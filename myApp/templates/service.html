@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{%load static%}
+
+{% block title %} Service {%endblock%}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      {%for service in services%}
+        <h2 class="display-9" id="{{service.serviceName}}">{{service.serviceName}}</h2>
+        <img src="{{service.serviceImage.url}}" class="img-fluid ">
+        <h5 class="mt-3">{{service.serviceSubHead}}</h5>
+        <p >{{service.serviceDetails}}</p>
+        <hr>
+        {%endfor%}
+      </div>
+      <div class="col-1">
+      </div>
+    <div class="col-3 mt-5">
+      <div class="list-group mt-5">
+        {%for service in services%}
+        <a class="list-group-item list-group-item-action" href="#{{service.serviceName}}">{{service.serviceName}}</a>
+        {%endfor%}
+      </div>
+  </div>
+</div>
+</div>
+    
+
+
+
+
+
+  
+
+
+  {%endblock%}
+
+<!-- end service section -->
+
+
+
+
+</body>
+
+</html>

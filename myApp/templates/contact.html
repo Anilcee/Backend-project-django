@@ -1,0 +1,87 @@
+
+{% extends "base.html" %}
+
+{%load static%}
+
+{%block title%} Contact {%endblock%}
+
+
+{% block content %}
+  <!-- map section -->
+
+
+  <section class="map_section">
+    <div id="map" class="h-100 w-100 ">
+    </div>
+
+    <div class="form_container ">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="row">
+        <div class="col-md-8 col-sm-10 offset-md-4">
+          <form action="">
+            <div class="text-center">
+              <h3>
+                Contact Us
+              </h3>
+            </div>
+            <div class="form-group">
+              <input type="text" placeholder="Name" class="pt-3" name="name">
+            </div>
+            <div class="form-group">
+              <input type=" text" placeholder="Phone Number"  name="phoneNumber">
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Email" name="email">
+            </div>
+            <div class="form-group">
+              <input type="text" class="message-box" placeholder="Message" name="message">
+            </div>
+            <div class="d-flex justify-content-center">
+              <button>
+                SEND
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+{%endblock%}
+
+  <!-- end map section -->
+
+ {%block script%}
+  <script>
+    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+    // Australia.
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 11,
+        center: {
+          lat: 40.645037,
+          lng: -73.880224
+        },
+      });
+
+      var image = 'images/maps-and-flags.png';
+      var beachMarker = new google.maps.Marker({
+        position: {
+          lat: 40.645037,
+          lng: -73.880224
+        },
+        map: map,
+        icon: image
+      });
+    }
+  </script>
+  <!-- google map js -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
+  </script>
+
+  <!-- end google map js -->
+  {%endblock%}
+</body>
+</html>

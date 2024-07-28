@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{%load static%}
+
+{% block title %} Clinic {%endblock%}
+
+{% block content %}
+  <!-- about section -->
+  <div class="col-md-12">
+        
+  <img src="{% static 'images/aboutUs.png'%}" alt="" class="img-fluid " >
+</div>
+
+<div class="container mt-3">
+  <h2 ><span>Mission Statement</span></h2>
+  <p>When you choose The Village Veterinarian to be your pet’s health-care provider, you can trust that your pet will receive the finest veterinary care using state-of-the-art technology and the latest in veterinary medicine. We strive to meet your needs for first-class veterinary care in New York with caring, compassion, and commitment. That means providing you and your pet with wellness examinations, advanced diagnostic testing, surgical treatment, and a range of other animal-care services. </p>
+  <br>
+  <h2>Vision</h2>
+  <p>The entire medical staff at The Village Veterinarian strives to provide the finest medical care for pets in New York City, NY, and the surrounding communities. We work every day to expand and improve the quality and scope of services, personnel, and care. At the same time, we’re focused on expanding the hospital’s reach towards 24-hour staffing for medical care.</p>
+  <br>
+  <h2>Community Involvement</h2>
+  <p>Being an animal-care provider is more than operating a practice. It’s about giving back to animals and pet owners in the community. That’s why we stay actively involved with the American Veterinary Medical Association. </p>
+</div>
+
+
+<section class="team text-center py-5">
+  <div class="container">
+    <div class="header my-5">
+      <h1>Meet our Team </h1>
+      <p class="text-muted">Meet and Greet our Team Members</p>
+    </div>
+    <div class="row">
+      {%for member in team%}
+      <div class="col-md-6 col-lg-3">
+        <div class="img-block mb-5">
+          <img src="{{member.image.url}}" class="img-thumbnail rounded-circle"  width="360" height="345">
+          <div class="content mt-2">
+            <h4>{{member.name}}</h4>
+            <p class="text-muted">{{member.role}}</p>
+          </div>
+        </div>
+      </div>
+      {%endfor%}
+    </div>
+  </div>
+</section>
+  
+
+
+<!-- end buy section -->
+<section class="client_section layout_padding-bottom">
+<div class="container">
+  <h2 class="custom_heading text-center">
+    What Say Our
+    <span>
+      clients
+    </span>
+  </h2>
+  <p class="text-center">
+    orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la
+  </p>
+  <div id="slideshow-container" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      {% for i in comments %}
+        <li data-target="#slideshow-container" data-slide-to="{{ i }}"{% if i == 0 %} class="active"{% endif %}></li>
+      {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+      {% for comment in comments %}
+
+  <div class="carousel-item{% if forloop.first %} active{% endif %}">
+    <div class="layout_padding2 pl-100">
+      <div class="client_container">
+        <div class="img_box">
+          <img src="{{ comment.user.customuser.profilePic.url }}"  width="100" height="140" alt="">
+        </div>
+        <div class="detail_box">
+          <h5>
+            {{ comment.user.first_name }} {{ comment.user.last_name }}
+          </h5>
+          <p>
+            {{ comment.text }}
+          </p>
+        </div>
+      </div>  
+    </div>  
+  </div>
+{% endfor %}
+    </div>
+  </div>
+</div>
+<center>
+  <a href="{% url 'create' %}" class="btn btn-primary mt-5">Create A Comment</a>
+</center>
+</section>
+
+
+
+
+{%endblock%}
